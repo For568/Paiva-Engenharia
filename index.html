@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiva Engenharia - Construção, Projetos e Alpinismo Industrial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #141414;
+            --bg-card-hover: #1c1c1c;
+            --primary: #39ff14; /* Verde Neon do Cartão */
+            --primary-hover: #2ecb0f;
+            --text-light: #ffffff;
+            --text-muted: #a0a0a0;
+            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 8%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin-left: 35px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: var(--transition);
+            text-transform: uppercase;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(10,10,10,1)), url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 8%;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            max-width: 850px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            text-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin-bottom: 40px;
+            animation: fadeInUp 1.2s ease;
+            line-height: 1.6;
+        }
+
+        .btn-main {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 42px;
+            background: var(--primary);
+            color: #000;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            box-shadow: 0 4px 20px rgba(57, 255, 20, 0.3);
+            animation: fadeInUp 1.4s ease;
+        }
+
+        .btn-main:hover {
+            background: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(57, 255, 20, 0.5);
+        }
+
+        /* About Section */
+        .about {
+            padding: 120px 8%;
+            background: #050505;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-img {
+            width: 100%;
+            border-radius: 8px;
+            border-left: 5px solid var(--primary);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .about-text h2 span {
+            color: var(--primary);
+        }
+
+        .crea-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-light);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .crea-badge i {
+            color: var(--primary);
+            margin-right: 6px;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 120px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.6rem;
+            margin-bottom: 80px;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .section-title::after {
+            content: '';
+            width: 70px;
+            height: 4px;
+            background: var(--primary);
+            position: absolute;
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            padding: 45px 35px;
+            border-radius: 6px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: var(--bg-card-hover);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            border-color: rgba(57, 255, 20, 0.1);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card i {
+            font-size: 2.6rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Portfolio / Execuções Section */
+        .portfolio {
+            padding: 120px 8%;
+            background: #050505;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 35px;
+            margin-top: 20px;
+        }
+
+        .portfolio-card {
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.02);
+            transition: var(--transition);
+        }
+
+        .portfolio-info {
+            padding: 30px 25px 35px 25px;
+        }
+
+        .portfolio-info h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            line-height: 1.4;
+        }
+
+        .portfolio-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            border-color: rgba(57, 255, 20, 0.15);
+        }
+
+        .portfolio-img-container {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            background: #111;
+        }
+
+        .portfolio-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-card:hover .portfolio-img-container img {
+            transform: scale(1.05);
+        }
+
+        /* Estrutura Interativa Otimizada de Antes e Depois (Hover & Click) */
+        .before-after-container {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            background: #111;
+            cursor: pointer;
+        }
+
+        .ba-after-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .ba-before-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 2;
+            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* Revela o Depois no PC (Hover) ou no Celular (Active) */
+        .portfolio-card:hover .ba-before-img,
+        .portfolio-card.active .ba-before-img {
+            opacity: 0;
+            transform: scale(1.03);
+        }
+
+        .ba-label {
+            position: absolute;
+            bottom: 15px;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 5px 14px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .label-before {
+            left: 15px;
+            color: #ff4a4a;
+            border-color: rgba(255, 74, 74, 0.3);
+            z-index: 3;
+        }
+
+        .label-after {
+            right: 15px;
+            color: var(--primary);
+            border-color: rgba(57, 255, 20, 0.3);
+            z-index: 1;
+        }
+
+        .portfolio-card:hover .label-before,
+        .portfolio-card.active .label-before {
+            opacity: 0;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 120px 8%;
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)), url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070') center center/cover;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .cta h2 span {
+            color: var(--primary);
+        }
+
+        .cta p {
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 45px auto;
+            font-size: 1.15rem;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background: #050505;
+            padding: 80px 8% 40px 8%;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-box h4 {
+            font-size: 1.15rem;
+            margin-bottom: 25px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+        }
+
+        .footer-box h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-box p {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer-box p i {
+            color: var(--primary);
+            font-size: 1.1rem;
+            width: 20px;
+        }
+
+        .footer-box a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-box a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 35px;
+            right: 35px;
+            background-color: #25d366;
+            color: #fff;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            z-index: 1000;
+            transition: var(--transition);
+            animation: pulse 2.5s infinite;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.08) translateY(-5px);
+            background-color: #20ba5a;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Responsive Layouts */
+        @media (max-width: 968px) {
+            header { padding: 20px 6%; }
+            .hero h1 { font-size: 2.8rem; }
+            .about { grid-template-columns: 1fr; gap: 45px; padding: 80px 6%; }
+            .services, .portfolio, .cta { padding: 80px 6%; }
+            nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="https://wa.me/5521989898563?text=Olá! Vi o portfólio no site e gostaria de fazer um orçamento técnico." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <header>
+        <div class="logo">PAIVA<span>ENGENHARIA</span></div>
+        <nav>
+            <a href="#home">Início</a>
+            <a href="#sobre">O Engenheiro</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#portfolio">Casos Reais</a>
+            <a href="#contato">Contato</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <h1>Soluções em Engenharia Civil e <span>Alpinismo Industrial</span>.</h1>
+        <p>Projetos residenciais, comerciais, cálculos estruturais avançados e manutenção vertical de fachadas executados com precisão cirúrgica e total respaldo legal.</p>
+        <a href="https://wa.me/5521989898563?text=Olá! Gostaria de solicitar um orçamento ou visita técnica." target="_blank" class="btn-main">
+            <i class="fa-solid fa-calendar-check"></i> Solicitar Visita Técnica
+        </a>
+    </section>
+
+    <section class="about" id="sobre">
+        <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?q=80&w=2070" alt="Engenharia e Gestão de Riscos" class="about-img">
+        <div class="about-text">
+            <span class="crea-badge"><i class="fa-solid fa-id-card"></i> CREA RJ 2022622421</span>
+            <h2>Responsabilidade Técnica de Ponta com <br><span>Jackson Paiva</span></h2>
+            <p>Atuando no mercado do Rio de Janeiro, o engenheiro Jackson Paiva integra com maestria a solidez da <strong>Engenharia Civil</strong>, a eficiência operacional da <strong>Engenharia de Produção</strong> e o rigor absoluto da <strong>Segurança do Trabalho</strong>.</p>
+            <p>Nosso compromisso fundamental é assegurar que sua estrutura ou reforma seja realizada em perfeita conformidade legal, mitigando custos desnecessários, controlando riscos operacionais e entregando performance executiva impecável.</p>
+        </div>
+    </section>
+
+    <section class="services" id="servicos">
+        <h2 class="section-title">Especialidades <span>Técnicas</span></h2>
+        <div class="services-grid">
+            
+            <div class="service-card">
+                <i class="fa-solid fa-helmet-safety"></i>
+                <h3>Construção e Reparos</h3>
+                <p>Gerenciamento integral de obras residenciais e comerciais do alicerce ao acabamento, prezando por cronogramas rigorosos e controle fino de insumos.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fa-solid fa-file-signature"></i>
+                <h3>Emissão de ART</h3>
+                <p>Laudos técnicos e emissão de Anotação de Responsabilidade Técnica (ART), garantindo que sua intervenção ou reforma esteja 100% regularizada perante os órgãos públicos.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fa-solid fa-calculator"></i>
+                <h3>Cálculos Estruturais</h3>
+                <p>Dimensionamento inteligente de estruturas em concreto armado e metálicas, minimizando desperdício de material e blindando a integridade do seu imóvel.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fa-solid fa-compass-drafting"></i>
+                <h3>Projetos Prediais e Residenciais</h3>
+                <p>Desenvolvimento completo de plantas baixas, fachadas e projetos complementares (elétricos/hidráulicos) focados em funcionalidade e design moderno.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fa-solid fa-anchor"></i>
+                <h3>Acesso por Cordas (Alpinismo Industrial)</h3>
+                <p>Pintura, restauração e tratamento de fachadas prediais com equipes certificadas em NR-35, alcançando perímetros complexos sem a necessidade de andaimes convencionais.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <h3>Manutenção e Instalações</h3>
+                <p>Vistorias minuciosas, reparos hidráulicos/elétricos em altura, limpeza de ar condicionado central e montagem técnica de estruturas em Blindex.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+        <h2 class="section-title">Nossa Equipe <span>Em Ação</span></h2>
+        
+        <div class="portfolio-grid">
+            
+            <div class="portfolio-card">
+                <div class="before-after-container">
+                    <img src="assets/antes.jpeg" alt="Fachada antes da reforma" class="ba-before-img">
+                    <div class="ba-label label-before">Antes (Toque para ver o depois)</div>
+                    
+                    <img src="assets/depois.jpeg" alt="Fachada depois da reforma" class="ba-after-img">
+                    <div class="ba-label label-after">Depois</div>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Revitalização de Fachadas</h3>
+                    <p>Remoção de infiltrações, tratamento de reboco, lavagem técnica sob alta pressão e pintura com tinta elastomérica de alta resistência.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-img-container">
+                    <img src="assets/cristo-redentor.png" alt="Inspeção estrutural complexa">
+                </div>
+                <div class="portfolio-info">
+                    <h3>Operações em Alta Complexidade</h3>
+                    <p>Acesso técnico por cordas em monumentos e estruturas icônicas do Rio de Janeiro. Rigor absoluto em segurança corporativa e procedimentos NR-35.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-img-container">
+                    <img src="assets/pintura-predio.jpeg" alt="Alpinismo industrial urbano">
+                </div>
+                <div class="portfolio-info">
+                    <h3>Restauração de Prismas e Poços</h3>
+                    <p>Pintura e impermeabilização interna em áreas confinadas e prismas de ventilação predial. Garantia de vedação perfeita contra intempéries.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-img-container">
+                    <img src="assets/pintura-na-torre.jpeg" alt="Manutenção de Torres Industriais">
+                </div>
+                <div class="portfolio-info">
+                    <h3>Manutenção de Torres Verticais</h3>
+                    <p>Tratamento anticorrosivo em estruturas metálicas de grande porte e pintura sinalizadora em torres de telecomunicação e transmissão.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-img-container">
+                    <img src="assets/torre-com-ceu-bonito.jpeg" alt="Escala de projetos de engenharia">
+                </div>
+                <div class="portfolio-info">
+                    <h3>Infraestrutura de Telecom</h3>
+                    <p>Gerenciamento de montagem, vistorias periódicas de fadiga estrutural e emissão de laudos de estabilidade de estruturas de grande escala.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-img-container">
+                    <img src="assets/israel-igreja.jpeg" alt="Restauração de cúpulas e templos">
+                </div>
+                <div class="portfolio-info">
+                    <h3>Restauração de Templos e Cúpulas</h3>
+                    <p>Pintura técnica e restauração fina em coberturas curvas e cúpulas de templos religiosos, preservando a estética arquitetônica original.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-img-container">
+                    <img src="assets/cristo.jpeg" alt="Pintura e comunicação visual em altura">
+                </div>
+                <div class="portfolio-info">
+                    <h3>Comunicação Visual e Letreiros</h3>
+                    <p>Instalação, pintura e fixação de letreiros complexos em grandes paredes internas ou fachadas externas com precisão de alinhamento.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>Garanta Segurança e <span>Respeito às Normas</span> Técnicas</h2>
+        <p>Não arrisque seu patrimônio com amadores. Fale diretamente com quem entende e possui as devidas credenciais do CREA-RJ para respaldar sua obra.</p>
+        <a href="https://wa.me/5521989898563?text=Olá! Gostaria de agendar uma reunião técnica para um novo projeto." target="_blank" class="btn-main">
+            <i class="fab fa-whatsapp"></i> Iniciar Atendimento via WhatsApp
+        </a>
+    </section>
+
+    <footer id="contato">
+        <div class="footer-content">
+            <div class="footer-box">
+                <h4>Paiva Engenharia</h4>
+                <p>Excelência técnica, segurança irrestrita em altura e soluções de engenharia sob medida para o mercado fluminense.</p>
+            </div>
+            <div class="footer-box">
+                <h4>Contatos Diretos</h4>
+                <p><i class="fa-solid fa-phone"></i> (21) 98989-8563</p>
+                <p><i class="fa-solid fa-phone"></i> (21) 98513-0921</p>
+                <p><i class="fa-solid fa-phone"></i> (21) 99870-1237</p>
+            </div>
+            <div class="footer-box">
+                <h4>Corpo Técnico</h4>
+                <p><i class="fa-solid fa-user-tie"></i> Eng. Jackson Paiva</p>
+                <p><i class="fa-solid fa-graduation-cap"></i> Civil | Production | Segurança</p>
+                <p><i class="fa-solid fa-building-shield"></i> CREA RJ: 2022622421</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Paiva Engenharia. Todos os direitos reservados. Design Exclusivo e Responsivo.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animação dinâmica de Reveal Suave ao rolar a página para os cards
+        const observerOptions = {
+            root: null,
+            threshold: 0.1,
+            rootMargin: "0px"
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .portfolio-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+            observer.observe(card);
+        });
+
+        // Alterna entre antes/depois ao clicar na imagem interativa (perfeito para celulares)
+        const beforeAfterContainer = document.querySelector('.before-after-container');
+        if (beforeAfterContainer) {
+            const card = beforeAfterContainer.closest('.portfolio-card');
+            beforeAfterContainer.addEventListener('click', function(e) {
+                card.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>
